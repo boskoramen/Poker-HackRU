@@ -4,16 +4,20 @@ spots = [0] * 4
 
 def loop():
     while True:
-        choice = input("Hi, welcome to our valet system. What would you like to do today?")
+        choice = input("Hi, welcome to our valet system. What would you like to do today? ")
         if choice == "Park":
-            location = input("Where would you like to park?")
-            if spots[(int(location) - 1)] == 0:
-                parking.park()
-            else:
-                print("Sorry, that spot is taken!")
+            for i in spots:
+                if spots[i] == 0:
+                    id = input("What is the id of the car? ")
+                    parking.park(id)
+                    spots[i] = 1
+                    break
+        elif choice == "Leave Spot":
+            location = input("Which spot was it? ")
+            spots[int(location) - 1] = 0
         elif choice == "Leave":
-            #temp
-            print("Do something")
+            print("Thank you for chosing our system! We hope to see you again!")
+            break
         else:
             print("You cannot do that here. Please try again.")
 
